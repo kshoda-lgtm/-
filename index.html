@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>社員基本情報確認フォーム - 株式会社ヴェクサム</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">株式会社ヴェクサム</div>
+            <h1>社員基本情報確認フォーム</h1>
+            <p class="subtitle">約3分で完了します</p>
+        </header>
+
+        <div class="info-box">
+            <h3>📋 給与に関する重要事項</h3>
+            <ul>
+                <li>交通費は1日上限<strong>2,000円</strong></li>
+                <li>基本二重支払いなし（家→クライアント→クライアント→本社の場合は高い方でカウント）</li>
+                <li>基本末締め、翌月末払い</li>
+            </ul>
+            <div class="example-box">
+                <strong>例：</strong>8月入社・研修開始、9月研修終了・常駐開始
+                → 9月の給与として10月末に支払い
+            </div>
+        </div>
+
+        <form id="employeeForm" class="form">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <span class="progress-text" id="progressText">0% 完了</span>
+
+            <!-- 必須項目 -->
+            <section class="section">
+                <h2>必須項目</h2>
+
+                <div class="form-group required">
+                    <label for="name">氏名 <span class="required-mark">*</span></label>
+                    <input type="text" id="name" name="name" required placeholder="山田 太郎">
+                </div>
+
+                <!-- 振込先銀行情報 -->
+                <h3 class="subsection-title">振込先銀行情報 <span class="required-mark">*</span></h3>
+
+                <div class="form-group required">
+                    <label for="bankName">銀行名 <span class="required-mark">*</span></label>
+                    <input type="text" id="bankName" name="bankName" required placeholder="例: みずほ銀行">
+                </div>
+
+                <div class="form-group required">
+                    <label for="branchName">支店名 <span class="required-mark">*</span></label>
+                    <input type="text" id="branchName" name="branchName" required placeholder="例: 新宿支店">
+                </div>
+
+                <div class="form-group required">
+                    <label for="accountType">口座種別 <span class="required-mark">*</span></label>
+                    <select id="accountType" name="accountType" required>
+                        <option value="">選択してください</option>
+                        <option value="普通">普通預金</option>
+                        <option value="当座">当座預金</option>
+                    </select>
+                </div>
+
+                <div class="form-group required">
+                    <label for="accountNumber">口座番号 <span class="required-mark">*</span></label>
+                    <input type="text" id="accountNumber" name="accountNumber" required placeholder="例: 1234567" pattern="[0-9]{7,8}" maxlength="8">
+                    <small class="help-text">半角数字で入力してください（7-8桁）</small>
+                </div>
+
+                <div class="form-group required">
+                    <label for="accountHolder">口座名義 <span class="required-mark">*</span></label>
+                    <input type="text" id="accountHolder" name="accountHolder" required placeholder="例: ヤマダ タロウ">
+                    <small class="help-text">カタカナで入力してください</small>
+                </div>
+
+                <div class="form-group required">
+                    <label for="homeStation">自宅の最寄駅 <span class="required-mark">*</span></label>
+                    <input type="text" id="homeStation" name="homeStation" required placeholder="例: 新宿駅">
+                </div>
+
+                <div class="form-group required">
+                    <label for="homeFare">自宅〜本社の往復運賃（最安値） <span class="required-mark">*</span></label>
+                    <div class="input-with-unit">
+                        <input type="number" id="homeFare" name="homeFare" required placeholder="例: 500">
+                        <span class="unit">円</span>
+                    </div>
+                    <small class="help-text">最安経路での往復運賃を入力してください</small>
+                </div>
+            </section>
+
+            <!-- 任意項目 -->
+            <section class="section">
+                <h2>任意項目</h2>
+                <p class="section-desc">常駐先がある場合のみ、記入してください</p>
+
+                <div class="form-group">
+                    <label for="clientCompany">常駐先会社名</label>
+                    <input type="text" id="clientCompany" name="clientCompany" placeholder="例: 株式会社〇〇">
+                </div>
+
+                <div class="form-group">
+                    <label for="clientStation">常駐先の最寄駅</label>
+                    <input type="text" id="clientStation" name="clientStation" placeholder="例: 渋谷駅">
+                </div>
+
+                <div class="form-group">
+                    <label for="clientFare">自宅〜常駐先の往復運賃</label>
+                    <div class="input-with-unit">
+                        <input type="number" id="clientFare" name="clientFare" placeholder="例: 800">
+                        <span class="unit">円</span>
+                    </div>
+                    <small class="help-text">最安経路での往復運賃を入力してください</small>
+                </div>
+            </section>
+
+            <div class="form-actions">
+                <button type="submit" class="submit-btn">
+                    <span class="btn-text">送信する</span>
+                    <span class="btn-loading" style="display:none;">送信中...</span>
+                </button>
+            </div>
+        </form>
+
+        <div id="successMessage" class="success-message" style="display:none;">
+            <div class="success-icon">✅</div>
+            <h2>送信完了しました</h2>
+            <p>社員基本情報の確認フォームを受け付けました。<br>ご協力いただきありがとうございました。</p>
+        </div>
+    </div>
+
+    <script src="script.js?v=2.3"></script>
+</body>
+</html>
