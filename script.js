@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const successMessage = document.getElementById('successMessage');
 
     // 必須フィールドのリスト
-    const requiredFields = ['name', 'bankName', 'branchName', 'accountType', 'accountNumber', 'accountHolder', 'homeStation', 'homeFare'];
+    const requiredFields = ['name', 'bankName', 'branchName', 'accountType', 'accountNumber', 'accountHolder', 'homeStation', 'homeFare', 'emergencyName', 'emergencyPhone', 'emergencyRelation'];
 
     // プログレスバーを更新する関数
     function updateProgress() {
